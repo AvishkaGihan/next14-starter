@@ -5,7 +5,6 @@ import Image from "next/image";
 import styles from "./links.module.css";
 import NavLink from "./navLink/NavLink";
 import { handleGithubLogout } from "@/lib/actions";
-import { auth } from "@/lib/auth";
 
 const links = [
   { path: "/", title: "Home" },
