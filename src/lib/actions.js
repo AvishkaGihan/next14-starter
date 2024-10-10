@@ -50,6 +50,7 @@ export const handleGithubLogout = async () => {
   "use server";
   await signOut("github");
 };
+
 export const register = async (previousState, formData) => {
   const { username, email, password, img, passwordRepeat } =
     Object.fromEntries(formData);
@@ -87,7 +88,7 @@ export const register = async (previousState, formData) => {
   }
 };
 
-export const login = async (formData) => {
+export const login = async (prevState, formData) => {
   const { username, password } = Object.fromEntries(formData);
 
   try {

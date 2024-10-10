@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
-import Credentials from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToDb } from "./utils";
 import { User } from "./models";
 import bcrypt from "bcryptjs";
@@ -26,13 +26,18 @@ const login = async (credentials) => {
   }
 };
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const {
+  handlers: { GET, POST },
+  auth,
+  signIn,
+  signOut,
+} = NextAuth({
   providers: [
     GitHub({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
     }),
-    Credentials({
+    CredentialsProvider({
       async authorize(credentials) {
         try {
           const user = await login(credentials);
@@ -54,7 +59,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             const newUser = new User({
               username: profile.login,
               email: profile.email,
-              img: profile.avatar_url,
+              image: profile.avatar_url,
             });
 
             await newUser.save();
