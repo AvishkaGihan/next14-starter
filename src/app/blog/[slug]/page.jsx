@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./singlePost.module.css";
 import PostUser from "@/components/postUser/postUser";
 import { Suspense } from "react";
-// import { getPost } from "@/lib/data";
+import { getPost } from "@/lib/data";
 
 // FETCH DATA WITH AN API
 const getData = async (slug) => {
@@ -17,7 +17,8 @@ const getData = async (slug) => {
 
 export const generateMetadata = async ({ params }) => {
   const { slug } = params;
-  const post = await getData(slug);
+
+  const post = await getPost(slug);
 
   return {
     title: post.title,
@@ -42,7 +43,7 @@ const SinglePostPage = async ({ params }) => {
         </div>
       )}
       <div className={styles.textContainer}>
-        <h1 className={styles.title}>{post?.title}</h1>
+        <h1 className={styles.title}>{post.title}</h1>
         <div className={styles.detail}>
           {post && (
             <Suspense fallback={<div>Loading...</div>}>

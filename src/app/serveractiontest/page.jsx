@@ -1,13 +1,19 @@
-import { addPost, deletePost } from "@/lib/actions";
+import { addPost, deletePost } from "@/lib/action"
 
-const ServerActionPage = () => {
+const ServerActionTestPage = () => {
+
+  // const actionInComponent = async ()=>{
+  //   "use server"
+  //   console.log("it works!")
+  // }
+
   return (
     <div>
       <form action={addPost}>
-        <input type="text" name="title" placeholder="Title" />
-        <input type="text" name="desc" placeholder="Description" />
-        <input type="text" name="slug" placeholder="Slug" />
-        <input type="text" name="userId" placeholder="User ID" />
+        <input type="text" placeholder="title" name="title"/>
+        <input type="text" placeholder="desc" name="desc"/>
+        <input type="text" placeholder="slug" name="slug"/>
+        <input type="text" placeholder="userId" name="userId"/>
         <button>Create</button>
       </form>
 
@@ -16,7 +22,7 @@ const ServerActionPage = () => {
         <button>Delete</button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default ServerActionPage;
+export default ServerActionTestPage
